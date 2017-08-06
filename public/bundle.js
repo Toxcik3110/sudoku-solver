@@ -23531,12 +23531,14 @@ var MainApp = function (_React$Component) {
 				console.log('arr', arr);
 				var checkVertical = function checkVertical(index) {
 					var available = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+					// console.log(arr)
 					for (var i = 0; i < 9; i++) {
 						available = available.filter(function (elem) {
 							return elem !== arr[i][index].num;
 						});
 					}
-					// console.log('checkVertical',available);
+					// if(index == 0) console.log(available);
+					// console.log('checkVertical ' + index,available);
 					return available;
 				};
 				var checkHorizontal = function checkHorizontal(index) {
@@ -23589,6 +23591,7 @@ var MainApp = function (_React$Component) {
 						if (arr[index][i].num === 0) {
 							var freeH = checkHorizontal(index);
 							var freeV = checkVertical(i);
+							if (i == 0) console.log('checkVertical ' + index + ' ' + i, freeV);
 							var freeS = checkSquare(index, i);
 							var free = arrayIntersect(freeV, arrayIntersect(freeS, freeH));
 							// console.log('buf',`${free}`);
@@ -23639,12 +23642,12 @@ var MainApp = function (_React$Component) {
 
 				for (var i = 0; i < 9; i++) {
 					var buf = checkEmpty(i);
-					console.log('row', buf);
+					// console.log('row',buf);
 					var res = composeVariants(buf);
 					for (var j = 0; j < buf.length; j++) {
-						arr[buf[j].y][buf[j].x].num = res[j];
+						arr[buf[j].y][buf[j].x].num = +res[j];
 					}
-					console.log('res', res);
+					// console.log('res',res);
 				}
 
 				_this2.setState({
